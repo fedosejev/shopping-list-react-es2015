@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import uuid from 'node-uuid';
 
 const styleRequired = {
   color: "#ffaaaa"
 };
 
-class AddListItem extends React.Component {
+class AddListItem extends Component {
   _handleSubmitEvent(event) {
     event.preventDefault();
 

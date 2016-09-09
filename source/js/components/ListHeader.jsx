@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class ListHeader extends React.Component {
+class ListHeader extends Component {
   _handleSubmit(event) {
     event.preventDefault();
 
@@ -8,7 +8,7 @@ class ListHeader extends React.Component {
   }
 
   render() {
-    var totalNumberOfListItems = this.props.totalNumberOfListItems;
+    const { totalNumberOfListItems } = this.props;
 
     if (totalNumberOfListItems > 0) {
       return (

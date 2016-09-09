@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import List from './List.jsx';
 import AddListItem from './AddListItem.jsx';
 
-class ShoppingList extends React.Component {
+class ShoppingList extends Component {
   constructor() {
     super();
     
@@ -18,7 +18,7 @@ class ShoppingList extends React.Component {
   }
 
   _addListItem(item) {
-    var list = this.state.list;
+    const { list } = this.state;
 
     list[item.id] = item;
 
@@ -26,7 +26,7 @@ class ShoppingList extends React.Component {
   }
 
   _removeListItem(itemId) {
-    var list = this.state.list;
+    const { list } = this.state;
 
     delete list[itemId];
 

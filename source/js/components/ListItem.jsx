@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ListItemDescription from './ListItemDescription.jsx';
 
-class ListItem extends React.Component {
+class ListItem extends Component {
   _handleSubmit(event) {
     event.preventDefault();
 
-    var listItemId = this.props.item.id;
+    const listItemId = this.props.item.id;
 
     this.props.removeListItem(listItemId);
   }
 
   render() {
-    var item = this.props.item;
+    const { item } = this.props;
+
     return (
       <div className="panel panel-primary">
         <div className="panel-heading">
