@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import List from './List.jsx';
-import AddListItem from './AddListItem.jsx';
+import List from './List';
+import AddListItem from './AddListItem';
 
 class ShoppingList extends Component {
   constructor() {
@@ -9,32 +9,36 @@ class ShoppingList extends Component {
     this.state = {
       list: {}
     };
+
+    this.removeListItem = this.removeListItem.bind(this);
+    this.removeAllListItems = this.removeAllListItems.bind(this);
+    this.addListItem = this.addListItem.bind(this);
   }
 
-  _updateList(list) {
+  updateList(list) {
     this.setState({
-      list: list
+      list
     });
   }
 
-  _addListItem(item) {
+  addListItem(item) {
     const { list } = this.state;
 
     list[item.id] = item;
 
-    this._updateList(list);
+    this.updateList(list);
   }
 
-  _removeListItem(itemId) {
+  removeListItem(itemId) {
     const { list } = this.state;
 
     delete list[itemId];
 
-    this._updateList(list);
+    this.updateList(list);
   }
 
-  _removeAllListItems() {
-    this._updateList({});
+  removeAllListItems() {
+    this.updateList({});
   }
 
   render() {
@@ -47,13 +51,13 @@ class ShoppingList extends Component {
 
             <List 
               items={items}
-              removeListItem={this._removeListItem.bind(this)} 
-              removeAllListItems={this._removeAllListItems.bind(this)} />
+              removeListItem={this.removeListItem} 
+              removeAllListItems={this.removeAllListItems} />
               
           </div>
           <div className="col-sm-6">
 
-            <AddListItem addListItem={this._addListItem.bind(this)} />
+            <AddListItem addListItem={this.addListItem} />
           
           </div>
         </div>

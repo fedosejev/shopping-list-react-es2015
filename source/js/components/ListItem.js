@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import ListItemDescription from './ListItemDescription.jsx';
+import ListItemDescription from './ListItemDescription';
 
 class ListItem extends Component {
-  _handleSubmit(event) {
+  constructor() {
+    super();
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
     event.preventDefault();
 
+    const { removeListItem } = this.props;
     const listItemId = this.props.item.id;
 
-    this.props.removeListItem(listItemId);
+    removeListItem(listItemId);
   }
 
   render() {
@@ -22,7 +29,7 @@ class ListItem extends Component {
         {item.description.length > 0 ? <ListItemDescription description={item.description} /> : ''}
 
         <div className="panel-footer">
-          <form className="form-inline" onSubmit={this._handleSubmit.bind(this)}>
+          <form className="form-inline" onSubmit={this.handleSubmit}>
             <button type="submit" className="btn btn-default btn-xs">Remove</button>
           </form>
         </div>

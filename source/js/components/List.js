@@ -1,30 +1,31 @@
 import React, { Component } from 'react';
-import ListItem from './ListItem.jsx';
-import ListHeader from './ListHeader.jsx';
-import EmptyList from './EmptyList.jsx';
+import ListItem from './ListItem';
+import ListHeader from './ListHeader';
+import EmptyList from './EmptyList';
 
 class List extends Component {
-  _getListOfItemIds(items) {
+  getListOfItemIds(items) {
     return Object.keys(items);
   }
 
-  _getTotalNumberOfListItems(items) {
+  getTotalNumberOfListItems(items) {
     const totalNumberOfItems = 0;
 
-    return this._getListOfItemIds(items).reduce((accumulator, itemId) => (
+    return this.getListOfItemIds(items).reduce((accumulator, itemId) => (
       parseInt(items[itemId].quantity, 10)
     ), 0);
   }
 
-  _createListItemElements(items) {
+  createListItemElements(items) {
     let item;
+    const { removeListItem } = this.props;
 
     return (
       this
-      ._getListOfItemIds(items)
+      .getListOfItemIds(items)
       .map(itemId => {
         item = items[itemId];
-        return (<ListItem item={item} removeListItem={this.props.removeListItem} key={item.id} />);
+        return (<ListItem item={item} removeListItem={removeListItem} key={item.id} />);
       })
       .reverse()
     );
@@ -32,14 +33,14 @@ class List extends Component {
 
   render() {
     const { items, removeAllListItems } = this.props;
-    const listItemElements = this._createListItemElements(items);
+    const listItemElements = this.createListItemElements(items);
 
     return (
       <div>
         <h3 className="page-header">
 
           <ListHeader
-            totalNumberOfListItems={this._getTotalNumberOfListItems(items)}
+            totalNumberOfListItems={this.getTotalNumberOfListItems(items)}
             removeAllListItems={removeAllListItems}
           />
 

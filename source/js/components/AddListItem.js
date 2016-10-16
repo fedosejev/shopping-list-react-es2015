@@ -6,7 +6,13 @@ const styleRequired = {
 };
 
 class AddListItem extends Component {
-  _handleSubmitEvent(event) {
+  constructor() {
+    super();
+
+    this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
+  }
+
+  handleSubmitEvent(event) {
     event.preventDefault();
 
     const item = {
@@ -22,7 +28,7 @@ class AddListItem extends Component {
 
   render() {
     return (
-      <form onSubmit={this._handleSubmitEvent.bind(this)}>
+      <form onSubmit={this.handleSubmitEvent}>
         <h3 className="page-header">Add New Item</h3>
 
         <div className="form-group">

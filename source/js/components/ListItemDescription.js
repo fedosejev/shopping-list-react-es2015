@@ -1,8 +1,8 @@
 import React from 'react';
 
-const ListItemDescription = (props) => (
+const ListItemDescription = ({ description }) => (
   <div className="panel-body">
-    {props.description}
+    {description}
   </div>
 );
 
