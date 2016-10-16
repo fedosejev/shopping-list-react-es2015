@@ -6,7 +6,7 @@ Uses Webpack, [Yarn](https://code.facebook.com/posts/1840075619545360).
 
 ### Live
 
-http://fedosejev.github.io/shopping-list-react/
+http://fedosejev.github.io/shopping-list-react-es2015/
 
 ## Install
 
