@@ -12,7 +12,7 @@ class List extends Component {
     const totalNumberOfItems = 0;
 
     return this.getListOfItemIds(items).reduce((accumulator, itemId) => (
-      parseInt(items[itemId].quantity, 10)
+      accumulator + parseInt(items[itemId].quantity, 10)
     ), 0);
   }
 
