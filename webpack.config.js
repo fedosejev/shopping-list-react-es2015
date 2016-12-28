@@ -5,7 +5,7 @@ module.exports = {
   entry: './source/js/index.js',
   output: {
     path: './build/',
-    filename: 'js/shopping-list.js'
+    filename: 'js/shopping-list.js',
   },
   module: {
     loaders: [
@@ -14,14 +14,14 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ['es2015', 'react']
-        }
-      }
-    ]
+          presets: ['latest', 'stage-0', 'react'],
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './source/index.ejs'
-    })
-  ]
+      template: './source/index.ejs',
+    }),
+  ],
 };
