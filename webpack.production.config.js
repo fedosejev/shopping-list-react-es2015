@@ -5,7 +5,7 @@ module.exports = {
   entry: './source/js/index.js',
   output: {
     path: './build/',
-    filename: 'js/shopping-list.js'
+    filename: 'js/shopping-list.js',
   },
   module: {
     loaders: [
@@ -14,16 +14,16 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          presets: ['es2015', 'react']
-        }
-      }
-    ]
+          presets: ['latest', 'stage-0', 'react'],
+        },
+      },
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
-      'process.env':{
-        'NODE_ENV': JSON.stringify('production')
-      }
+      'process.env': {
+        NODE_ENV: JSON.stringify('production'),
+      },
     }),
     new webpack.optimize.UglifyJsPlugin({
       compressor: {
@@ -34,8 +34,8 @@ module.exports = {
       template: './source/index.ejs',
       minify: {
         html5: true,
-        collapseWhitespace: true
-      }
-    })
-  ]
+        collapseWhitespace: true,
+      },
+    }),
+  ],
 };
