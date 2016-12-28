@@ -1,14 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ListItemDescription from './ListItemDescription';
 
 class ListItem extends Component {
-  constructor() {
-    super();
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
 
     const { removeListItem } = this.props;
@@ -37,5 +31,10 @@ class ListItem extends Component {
     );
   }
 }
+
+ListItem.propTypes = {
+  item: PropTypes.object.isRequired,
+  removeListItem: PropTypes.func.isRequired,
+};
 
 export default ListItem;

@@ -1,13 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 class ListHeader extends Component {
-  constructor() {
-    super();
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
 
     const { removeAllListItems } = this.props;
@@ -21,7 +15,7 @@ class ListHeader extends Component {
     if (totalNumberOfListItems > 0) {
       return (
         <form onSubmit={this.handleSubmit} className="form-inline">
-          {this.props.totalNumberOfListItems} {totalNumberOfListItems === 1 ? 'item' : 'items'}
+          {totalNumberOfListItems} {totalNumberOfListItems === 1 ? 'item' : 'items'}
           {' '}
           <button className="btn btn-xs btn-default" type="submit">Remove all</button>
         </form>
@@ -31,5 +25,10 @@ class ListHeader extends Component {
     return (<span>Shopping List</span>);
   }
 }
+
+ListHeader.propTypes = {
+  removeAllListItems: PropTypes.func.isRequired,
+  totalNumberOfListItems: PropTypes.number.isRequired,
+};
 
 export default ListHeader;

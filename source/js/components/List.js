@@ -1,20 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import ListItem from './ListItem';
 import ListHeader from './ListHeader';
 import EmptyList from './EmptyList';
 
 class List extends Component {
-  getListOfItemIds(items) {
-    return Object.keys(items);
-  }
+  getListOfItemIds = items => Object.keys(items)
 
-  getTotalNumberOfListItems(items) {
-    const totalNumberOfItems = 0;
-
-    return this.getListOfItemIds(items).reduce((accumulator, itemId) => (
+  getTotalNumberOfListItems = items => (
+    this.getListOfItemIds(items).reduce((accumulator, itemId) => (
       accumulator + parseInt(items[itemId].quantity, 10)
-    ), 0);
-  }
+    ), 0)
+  )
 
   createListItemElements(items) {
     let item;
@@ -54,5 +50,11 @@ class List extends Component {
     );
   }
 }
+
+List.propTypes = {
+  removeListItem: PropTypes.func.isRequired,
+  removeAllListItems: PropTypes.func.isRequired,
+  items: PropTypes.array.isRequired,
+};
 
 export default List;

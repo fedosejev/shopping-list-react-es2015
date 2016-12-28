@@ -1,26 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import uuid from 'node-uuid';
 
 const styleRequired = {
-  color: "#ffaaaa"
+  color: '#ffaaaa',
 };
 
 class AddListItem extends Component {
-  constructor() {
-    super();
-
-    this.handleSubmitEvent = this.handleSubmitEvent.bind(this);
-  }
-
-  handleSubmitEvent(event) {
+  handleSubmitEvent = event => {
     event.preventDefault();
 
     const item = {
       id: uuid.v4(),
       date: new Date(),
-      name: this.refs.name.value.trim(),
-      description: this.refs.description.value.trim(),
-      quantity: this.refs.quantity.value
+      name: this.listItemName.value.trim(),
+      description: this.listItemDescription.value.trim(),
+      quantity: this.listItemQuantity.value,
     };
 
     this.props.addListItem(item);
@@ -33,19 +27,42 @@ class AddListItem extends Component {
 
         <div className="form-group">
           <label htmlFor="listItemName">Name <span style={styleRequired}>*</span></label>
-          <input type="text" className="form-control" id="listItemName" placeholder="Enter name" required ref="name" />
+          <input
+            type="text"
+            className="form-control"
+            id="listItemName"
+            placeholder="Enter name"
+            required
+            ref={input => this.listItemName = input}
+          />
         </div>
 
         <div className="form-group">
           <label htmlFor="listItemDescription">Description</label>
-          <textarea className="form-control" rows="3" id="listItemDescription" placeholder="Enter description" ref="description"></textarea>
+          <textarea
+            className="form-control"
+            rows="3"
+            id="listItemDescription"
+            placeholder="Enter description"
+            ref={input => this.listItemDescription = input}
+          />
         </div>
 
         <div className="form-group">
           <label htmlFor="listItemQuantity">Quantity <span style={styleRequired}>*</span></label>
           <div className="row">
             <div className="col-xs-5 col-sm-6 col-md-4">
-              <input type="number" min="1" max="9999" step="1" defaultValue="1" className="form-control" id="listItemQuantity" required ref="quantity" />
+              <input
+                type="number"
+                min="1"
+                max="9999"
+                step="1"
+                defaultValue="1"
+                className="form-control"
+                id="listItemQuantity"
+                required
+                ref={input => this.listItemQuantity = input}
+              />
             </div>
           </div>
         </div>
@@ -58,5 +75,9 @@ class AddListItem extends Component {
     );
   }
 }
+
+AddListItem.propTypes = {
+  addListItem: PropTypes.func.isRequired,
+};
 
 export default AddListItem;

@@ -5,9 +5,9 @@ import AddListItem from './AddListItem';
 class ShoppingList extends Component {
   constructor() {
     super();
-    
+
     this.state = {
-      list: {}
+      list: {},
     };
 
     this.removeListItem = this.removeListItem.bind(this);
@@ -17,7 +17,7 @@ class ShoppingList extends Component {
 
   updateList(list) {
     this.setState({
-      list
+      list,
     });
   }
 
@@ -49,16 +49,17 @@ class ShoppingList extends Component {
         <div className="row">
           <div className="col-sm-6">
 
-            <List 
+            <List
               items={items}
-              removeListItem={this.removeListItem} 
-              removeAllListItems={this.removeAllListItems} />
-              
+              removeListItem={this.removeListItem}
+              removeAllListItems={this.removeAllListItems}
+            />
+
           </div>
           <div className="col-sm-6">
 
             <AddListItem addListItem={this.addListItem} />
-          
+
           </div>
         </div>
       </div>
